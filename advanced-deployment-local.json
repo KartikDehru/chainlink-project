@@ -1,0 +1,59 @@
+{
+  "contractName": "AdvancedPricePredictionDApp",
+  "network": "localhost",
+  "chainId": "unknown",
+  "contractAddress": "0x70e0bA845a1A0F2DA3359C97E0285013525FFC49",
+  "mockFeeds": [
+    {
+      "name": "ETH/USD",
+      "address": "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E"
+    },
+    {
+      "name": "BTC/USD",
+      "address": "0xc3e53F4d16Ae77Db1c982e75a937B9f60FE63690"
+    },
+    {
+      "name": "LINK/USD",
+      "address": "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB"
+    },
+    {
+      "name": "MATIC/USD",
+      "address": "0x9E545E3C0baAB3E08CdfD552C960A1050f373042"
+    },
+    {
+      "name": "ADA/USD",
+      "address": "0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9"
+    },
+    {
+      "name": "DOT/USD",
+      "address": "0x1613beB3B2C4f22Ee086B2b38C1476A3cE7f78E8"
+    },
+    {
+      "name": "AVAX/USD",
+      "address": "0x851356ae760d987E095750cCeb3bC6014560891C"
+    },
+    {
+      "name": "ATOM/USD",
+      "address": "0xf5059a5D33d5853360D16C683c16e67980206f36"
+    },
+    {
+      "name": "SOL/USD",
+      "address": "0x95401dc811bb5740090279Ba06cfA8fcF6113778"
+    },
+    {
+      "name": "UNI/USD",
+      "address": "0x998abeb3E57409262aE5b751f60747921B33613E"
+    }
+  ],
+  "deployedAt": "2025-06-29T19:43:56.860Z",
+  "features": [
+    "Multiple assets (10 different crypto pairs)",
+    "Multiple time windows (8 different durations)",
+    "Multiple prediction types (5 different types)",
+    "Batch predictions (up to 10 at once)",
+    "Leaderboard system",
+    "User statistics tracking",
+    "Auto-resolution system",
+    "Enhanced reward multipliers"
+  ]
+}

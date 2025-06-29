@@ -1,0 +1,473 @@
+/* Enhanced App Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+  min-height: 100vh;
+}
+
+.enhanced-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.connect-button {
+  background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.connect-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.connect-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Debug Panel */
+.debug-panel {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.debug-button {
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.debug-info {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0 auto 1rem;
+  max-width: 80%;
+  text-align: left;
+  color: white;
+}
+
+.debug-info p {
+  margin: 0.5rem 0;
+}
+
+.small-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+/* Asset Selection Panel */
+.asset-panel {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: white;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.asset-selector {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.asset-option {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  min-width: 120px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.asset-option:hover:not(.inactive) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.asset-option.selected {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(58, 123, 213, 0.3);
+}
+
+.asset-option.inactive {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.asset-name {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.asset-price {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+}
+
+/* Price Display */
+.price-display {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.price-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.price-value {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.price-info {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* Time Window Selector */
+.time-window-selector {
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.time-window-selector label {
+  display: block;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.time-options {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.time-option {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 50px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.time-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.time-option.selected {
+  background: rgba(58, 123, 213, 0.7);
+  font-weight: 600;
+}
+
+/* Prediction Form */
+.prediction-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.connect-message {
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.prediction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bet-input {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.prediction-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.prediction-button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.prediction-button.higher {
+  background: linear-gradient(45deg, #56ab2f, #a8e063);
+  color: white;
+}
+
+.prediction-button.lower {
+  background: linear-gradient(45deg, #cb356b, #bd3f32);
+  color: white;
+}
+
+.prediction-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.prediction-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Predictions History */
+.predictions-history {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.loading {
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.no-predictions {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 2rem;
+}
+
+.predictions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prediction-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: white;
+}
+
+.prediction-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prediction-asset {
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.prediction-asset.eth {
+  background: rgba(58, 123, 213, 0.3);
+}
+
+.prediction-asset.btc {
+  background: rgba(247, 147, 26, 0.3);
+}
+
+.prediction-window {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.prediction-info {
+  margin-bottom: 1rem;
+}
+
+.prediction-info > div {
+  margin-bottom: 0.5rem;
+}
+
+.time-remaining {
+  font-weight: 600;
+  color: #a8e063;
+}
+
+.prediction-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resolve-button {
+  background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.resolve-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.resolve-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.prediction-status {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.prediction-status.pending {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.prediction-status.won {
+  background: rgba(88, 171, 47, 0.2);
+  color: #a8e063;
+}
+
+.prediction-status.lost {
+  background: rgba(203, 53, 107, 0.2);
+  color: #ff9b9b;
+}
+
+/* Footer */
+.footer {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.footer > div {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .asset-selector {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .prediction-buttons {
+    flex-direction: column;
+  }
+  
+  .price-value {
+    font-size: 2.5rem;
+  }
+  
+  .time-options {
+    flex-wrap: wrap;
+  }
+}
