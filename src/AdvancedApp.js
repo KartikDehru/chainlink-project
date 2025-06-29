@@ -5,6 +5,7 @@ import './AdvancedApp.css';
 
 // Use the deployed contract address on Sepolia
 const CONTRACT_ADDRESS = "0x78F01c2aE96F13c67FA13c0CDAA280CDD8d82341"; // Enhanced contract on Sepolia
+const SEPOLIA_CHAIN_ID = "0xaa36a7"; // Chain ID for Sepolia in hex
 
 function AdvancedApp() {
   // Core state
@@ -14,6 +15,7 @@ function AdvancedApp() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isCorrectNetwork, setIsCorrectNetwork] = useState(false);
   
   // Contract data
   const [assets, setAssets] = useState([]);
@@ -51,14 +53,19 @@ function AdvancedApp() {
     checkIfWalletIsConnected();
     if (window.ethereum) {
       window.ethereum.on('accountsChanged', handleAccountsChanged);
-      window.ethereum.on('chainChanged', () => window.location.reload());
+      window.ethereum.on('chainChanged', handleChainChanged);
     }
     return () => {
       if (window.ethereum) {
         window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        window.ethereum.removeListener('chainChanged', handleChainChanged);
       }
     };
   }, []);
+  
+  const handleChainChanged = () => {
+    window.location.reload();
+  };
   
   // Auto-refresh data
   useEffect(() => {
@@ -90,11 +97,16 @@ function AdvancedApp() {
         return;
       }
       
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+      setIsCorrectNetwork(chainId === SEPOLIA_CHAIN_ID);
+      
       const accounts = await window.ethereum.request({ method: 'eth_accounts' });
       
       if (accounts.length > 0) {
         setAccount(accounts[0]);
-        await initializeContract();
+        if (chainId === SEPOLIA_CHAIN_ID) {
+          await initializeContract();
+        }
       }
     } catch (error) {
       setError('Error connecting to wallet: ' + error.message);
@@ -110,10 +122,53 @@ function AdvancedApp() {
       
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       setAccount(accounts[0]);
-      await initializeContract();
-      setError('');
+      
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+      setIsCorrectNetwork(chainId === SEPOLIA_CHAIN_ID);
+      
+      if (chainId === SEPOLIA_CHAIN_ID) {
+        await initializeContract();
+        setError('');
+      } else {
+        setError('Please switch to Sepolia network to use this application');
+      }
     } catch (error) {
       setError('Error connecting wallet: ' + error.message);
+    }
+  };
+  
+  const switchToSepoliaNetwork = async () => {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: SEPOLIA_CHAIN_ID }],
+      });
+    } catch (switchError) {
+      // This error code means the chain has not been added to MetaMask
+      if (switchError.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: SEPOLIA_CHAIN_ID,
+                chainName: 'Sepolia Test Network',
+                nativeCurrency: {
+                  name: 'Sepolia ETH',
+                  symbol: 'ETH',
+                  decimals: 18
+                },
+                rpcUrls: ['https://sepolia.infura.io/v3/'],
+                blockExplorerUrls: ['https://sepolia.etherscan.io/'],
+              },
+            ],
+          });
+        } catch (addError) {
+          setError('Error adding Sepolia network: ' + addError.message);
+        }
+      } else {
+        setError('Error switching to Sepolia network: ' + switchError.message);
+      }
     }
   };
   
@@ -466,6 +521,23 @@ function AdvancedApp() {
           <p>Connect your wallet to start making predictions on multiple crypto assets!</p>
           <button onClick={connectWallet} className="connect-button">
             Connect MetaMask
+          </button>
+        </div>
+      </div>
+    );
+  }
+  
+  if (!isCorrectNetwork) {
+    return (
+      <div className="advanced-app">
+        <div className="connect-wallet-container">
+          <h1>🔮 Advanced Chainlink Price Prediction DApp</h1>
+          <div className="error-message">
+            <p>You are not connected to the Sepolia Test Network!</p>
+            <p>This DApp only works on the Sepolia testnet where the smart contract is deployed.</p>
+          </div>
+          <button onClick={switchToSepoliaNetwork} className="connect-button">
+            Switch to Sepolia Network
           </button>
         </div>
       </div>
